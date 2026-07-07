@@ -73,7 +73,7 @@ class TagsTestCase(TestCase):
         )
 
         t = Template(
-            "{% load fineforms %}" '{% ff_fields form exclude="optional,email" %}'
+            '{% load fineforms %}{% ff_fields form exclude="optional,email" %}'
         )
         self.assertHTMLEqual(
             t.render(Context({"form": Form()})),
@@ -96,7 +96,7 @@ class TagsTestCase(TestCase):
 
     def test_errors(self):
         t = Template(
-            "{% load fineforms %}" "{% ff_errors form nothing %}" "{% ff_fields form %}"
+            "{% load fineforms %}{% ff_errors form nothing %}{% ff_fields form %}"
         )
         self.assertHTMLEqual(
             t.render(Context({"form": Form({})})),
@@ -114,8 +114,8 @@ class TagsTestCase(TestCase):
     <label class="error required" for="id_email">Email</label>
   </div>
   <div class="small-12 medium-9 columns">
-    <input {'aria-invalid="true"' if django.VERSION > (5,) else ''} type="email" name="email" id="id_email" maxlength="320" required />
-    <ul class="errorlist"><li>This field is required.</li></ul>
+    <input {'aria-describedby="id_email_error"' if django.VERSION >= (5, 2) else ""} {'aria-invalid="true"' if django.VERSION > (5,) else ""} type="email" name="email" id="id_email" maxlength="320" required />
+    <ul class="errorlist" {'id="id_email_error"' if django.VERSION >= (5, 2) else ""}><li>This field is required.</li></ul>
   </div>
 </div>
 <div class="row widget--textinput">
@@ -173,7 +173,7 @@ Email
     <label class="required" for="id_field1">Field1</label>
   </div>
   <div class="small-12 medium-9 columns">
-    <input {'aria-describedby="id_field1_helptext"' if django.VERSION > (5,) else ''} type="text" name="field1" required id="id_field1" />
+    <input {'aria-describedby="id_field1_helptext"' if django.VERSION > (5,) else ""} type="text" name="field1" required id="id_field1" />
     <p class="help-text">field1 help text</p>
   </div>
 </div>
@@ -181,7 +181,7 @@ Email
   <div class="small-12 medium-3 columns"></div>
   <div class="small-12 medium-9 columns">
     <div>
-      <input {'aria-describedby="id_field2_helptext"' if django.VERSION > (5,) else ''} type="checkbox" name="field2" required id="id_field2" />
+      <input {'aria-describedby="id_field2_helptext"' if django.VERSION > (5,) else ""} type="checkbox" name="field2" required id="id_field2" />
       <label class="required" for="id_field2">Field2</label>
       <p class="help-text">field2 help text</p>
     </div>

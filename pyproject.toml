@@ -1,6 +1,5 @@
 [build-system]
 build-backend = "hatchling.build"
-
 requires = [ "hatchling" ]
 
 [project]
@@ -23,6 +22,8 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
   "Topic :: Software Development",
   "Topic :: Software Development :: Libraries :: Application Frameworks",
@@ -31,23 +32,19 @@ dynamic = [ "version" ]
 dependencies = [
   "django>=3.2",
 ]
-
 optional-dependencies.tests = [
   "coverage",
 ]
 urls.Homepage = "http://github.com/matthiask/django-fineforms/"
 
-[tool.hatch.version]
-path = "fineforms/__init__.py"
-
-[tool.hatch.build]
-include = [
+[tool.hatch]
+version.path = "fineforms/__init__.py"
+build.include = [
   "/fineforms",
 ]
 
 [tool.ruff]
 target-version = "py310"
-
 fix = true
 show-fixes = true
 lint.extend-select = [
@@ -99,3 +96,14 @@ lint.per-file-ignores."*/migrat*/*" = [
 lint.isort.combine-as-imports = true
 lint.isort.lines-after-imports = 2
 lint.mccabe.max-complexity = 15
+
+[tool.coverage]
+run.branch = true
+run.include = [
+  "*fineforms*",
+]
+run.omit = [
+  "*.tox*",
+  "*migrations*",
+  "*tests*",
+]

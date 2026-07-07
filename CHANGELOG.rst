@@ -5,7 +5,9 @@ Change log
 `Next version`_
 ===============
 
-- Modernized the package, added Python 3.11, 3.12 and Django 5.1.
+- Modernized the package, added Python 3.11, 3.12, 3.13, 3.14 and Django 5.1,
+  5.2 and 6.0.
+- Fixed the expected output to match what newer Django versions do.
 
 .. _Next version: https://github.com/matthiask/django-fineforms/compare/0.7...main
 
