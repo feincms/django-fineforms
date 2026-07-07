@@ -33,7 +33,7 @@ dependencies = [
   "django>=3.2",
 ]
 optional-dependencies.tests = [
-  "coverage",
+  "coverage[toml]",
 ]
 urls.Homepage = "http://github.com/matthiask/django-fineforms/"
 
