@@ -98,7 +98,6 @@ lint.isort.lines-after-imports = 2
 lint.mccabe.max-complexity = 15
 
 [tool.coverage]
-run.branch = true
 run.include = [
   "*fineforms*",
 ]
@@ -107,3 +106,4 @@ run.omit = [
   "*migrations*",
   "*tests*",
 ]
+run.branch = true
